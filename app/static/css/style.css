@@ -1,0 +1,24 @@
+html, body, main{
+    margin: 0;
+}
+
+
+
+#block{
+    font-size: 1.3rem;
+}
+.card-wrap{
+    background: rgba(186, 212, 219, 0.144);
+}
+.card{
+    border-radius: 15px;
+}
+
+
+.p-5{
+    background: #c1d9e2a8;
+}
+.p-2{
+    background: #b1bec4c5;
+}
+

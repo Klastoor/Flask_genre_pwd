@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container p-2">
+
+    <!-- запрос пошлем сюда же, просто во время обработки перенаправим на другую страничку с подтверждем -->
+    <form action="" method="POST">
+
+        <div class="row">
+            <legend><h1 class="text-center">Генерация пароля</h1></legend>
+
+        <!-- =========== Длина пароля =============== -->
+            <div class="col-sm-12 d-flex justify-content-center">
+                <div class="col-sm-2 text-right">
+                    <strong class="my-auto">Длина пароля</strong>
+                </div> <!-- /col -->
+                <div class="col-sm-6 mx-auto p-2">
+                    <input type="range" class="custom-range my-auto p-0" min="4" max="20" step="1" value="12" name="count" oninput="newAmount(this.value)" id="count" required>
+                </div> <!-- /col -->
+                <div class="col-sm-2 text-center">
+                    <span class="my-auto font-weight-bold my-auto p-0" id="block">12</span>
+                </div> <!-- /col -->
+            </div><!-- /block -->
+
+                
+        <!-- =========== Допустимые символы =============== -->
+            <div class="col-sm-12 d-flex justify-content-center">
+                <div class="col-sm-2 text-right align-items-center align-content-center">
+                    <strong class="my-auto">Допустимые символы</strong>
+                </div> <!-- /col -->
+                <div class="col-sm-8 mx-auto p-2">
+                    <input type="text" name="symbv" id="symbv" value="23asdv" class="form-control my-auto" readonly>
+                </div> <!-- /col -->
+            </div> <!-- /block -->
+                
+        <!-- =========== Вариант символов =============== -->
+            <div class="wrapper col-sm-9 p-3 my-3 mx-auto bg-light">
+                <h3 class="text-center my-auto">Пароль должен содержать:</h3>
+
+                <br>
+
+            <!--====== Числа =======-->
+                <div class="row items">
+                    <div class="col-sm-5 pr-0 text-right">
+                        <strong>Числа</strong>
+                    </div> <!-- /col -->
+                    
+                    <div class="col-sm-7">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input checkboxClass" value="0123456789" checked name="test21" id="test21">
+                            <label class="custom-control-label font-italic pl-5 text-muted" for="test21">    Например: 12345 </label>
+                        </div> <!-- /custom-control custom-checkbox -->
+                    </div> <!-- /col -->                    
+                </div> <!-- /row items -->
+
+            <!-- ===== Верхний регистр ===== -->
+                <div class="row items">
+                    <div class="col-sm-5 pr-0 text-right">
+                        <strong>Буквы верхнего регистра</strong>
+                    </div> <!-- /col -->
+                    
+                    <div class="col-sm-7">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input checkboxClass" value="ABCDEFGHIJKLMNOPRSTUVXYZ" checked name="test22" id="test22">
+                            <label class="custom-control-label font-italic pl-5 text-muted" for="test22">Например: ABCDEF </label>
+                        </div> <!-- /custom-control custom-checkbox -->
+                    </div> <!-- /col -->                    
+                </div> <!-- /row items -->
+
+            <!-- ===== Нижний регистр ===== -->
+                <div class="row items">
+                    <div class="col-sm-5 pr-0 text-right">
+                        <strong>Буквы нижнего регистра</strong>
+                    </div> <!-- /col -->
+                    
+                    <div class="col-sm-7">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input checkboxClass" value="abcdefghijklmnoprstuvxyz" checked name="test23" id="test23">
+                            <label class="custom-control-label font-italic pl-5 text-muted" for="test23">Например: abcdef </label>
+                        </div> <!-- /custom-control custom-checkbox -->
+                    </div> <!-- /col -->                    
+                </div> <!-- /row items -->
+
+            <!-- ====== Символы ригистр ======== -->
+                <div class="row items">
+                    <div class="col-sm-5 pr-0 text-right">
+                        <strong>Символы</strong>
+                    </div> <!-- /col -->
+                    
+                    <div class="col-sm-7">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input checkboxClass" value="%$#@!?&" name="test24" id="test24">
+                            <label class="custom-control-label font-italic pl-5 text-muted" for="test24">Например: $@?& </label>
+                        </div> <!-- /custom-control custom-checkbox -->
+                    </div> <!-- /col -->                    
+                </div> <!-- /row items -->
+
+                <div class="row items">
+                    <div class="col-sm-5 text-right my-auto"><strong>Дополнительно</strong></div>
+                    <div class="col-sm-7 input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            <input type="checkbox" id="prov" value="" aria-label="Checkbox for following text input">
+                          </div> <!-- /input-group-text -->
+                        </div> <!-- /input-group-prepend -->
+                        <input type="text" class="form-control" oninput="newChange(this.value)" aria-label="Text input with checkbox">
+                      </div> <!-- /col-sm-7 -->
+                </div> <!-- /row items -->
+
+            </div> <!-- /wrapper -->
+
+
+                <br>
+            <!-- =========== Количество паролей =============== -->
+                <div class="col-sm-12 d-flex">
+                    
+                    <div class="col-sm-2 text-right">
+                        <strong>Паролей сгенерировать</strong>
+                    </div> <!-- /col-sm-2 -->
+
+                    <div class="col-sm-6 mx-auto p-2 input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-primary" onclick="summar(-1)" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        </div> <!-- /input-group-prepend -->
+                        
+                        <input type="text" class="form-control text-center" value="10" placeholder="10" name="number" id="number" readonly aria-describedby="basic-addon1">
+                        
+                        <div class="input-group-append">
+                            <button class="btn btn-danger" onclick="summar(1)" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div> <!-- /input-group-append -->
+                    </div> <!-- /col-sm-10 -->
+
+                </div><!-- /block -->
+            <br>
+            <!-- кнопка -->
+            <br>
+        <button type="submit" class="btn btn-success mx-auto mt-3 font-weight-bolder">Сгенерировать</button>
+
+        </div> <!-- /row -->
+    </form>
+
+    <hr>
+    
+    {% if result %}
+        <div class="row-cols-1">
+            <div class="content-wrap d-flex flex-wrap justify-content-around">
+            {% for item in result %}
+
+                <div class="col group d-flex flex-nowrap m-2" style="width: 185px;">
+                    <input type="text" style="min-width: 140px;" class="form-control text-center my-auto" id={{ item.id }} value={{ item.password }} onclick="takeText(this.id)" aria-multiselectable="true" readonly>
+                    <div class="input-group-append" style="float: right; min-width: 42px;">
+                        <img src="/static/save.svg"  class="img-fluid"  onclick="takeText('{{ item.id }}')" style="width: 42px;" alt="save button">
+                    </div> <!-- /input-group-append -->
+                </div><!-- /col -->
+
+            {% endfor %}
+            </div> <!-- /content-wrap -->
+        </div> <!-- /row-cols-1 -->
+    {% endif %}
+</div> <!-- /container -->
+{% endblock %}
